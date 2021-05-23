@@ -72,22 +72,22 @@ public :
       }
     }
     //Heartbeat
-    if ((HEARTBEAT_INTERVAL > 0)
-        && ((lastHeartBeat == 0)
-            || (now - lastHeartBeat > HEARTBEAT_INTERVAL))) {
-      unsigned char heartBeatCommand[] =
-          { 0x55, 0xAA, 0x00, 0x00, 0x00, 0x00 };
-      commandCharsToSerial(6, heartBeatCommand);
-      //commandHexStrToSerial("55 aa 00 00 00 00");
-      lastHeartBeat = now;
-    }
-    //Query
-    if ((lastHeartBeat > 0) &&
-        (now - lastQueryStatus > MINIMUM_INTERVAL) &&
-        (now - lastQueryStatus > QUERY_INTERVAL)) {
-      this->queryDeviceState();
-      lastQueryStatus = now;
-    }
+    // if ((HEARTBEAT_INTERVAL > 0)
+    //     && ((lastHeartBeat == 0)
+    //         || (now - lastHeartBeat > HEARTBEAT_INTERVAL))) {
+    //   unsigned char heartBeatCommand[] =
+    //       { 0x55, 0xAA, 0x00, 0x00, 0x00, 0x00 };
+    //   commandCharsToSerial(6, heartBeatCommand);
+    //   //commandHexStrToSerial("55 aa 00 00 00 00");
+    //   lastHeartBeat = now;
+    // }
+    // //Query
+    // if ((lastHeartBeat > 0) &&
+    //     (now - lastQueryStatus > MINIMUM_INTERVAL) &&
+    //     (now - lastQueryStatus > QUERY_INTERVAL)) {
+    //   this->queryDeviceState();
+    //   lastQueryStatus = now;
+    // }
   }
 
 protected :
@@ -231,6 +231,7 @@ protected :
       if (notifyAllMcuCommands->getBoolean()) {
         network->notice(F("MCU: %s"), this->getCommandAsString().c_str());
       }
+      
       bool knownCommand = false;
       if (receivedCommand[3] == 0x07) {
         knownCommand = processStatusCommand(receivedCommand[6], receivedCommand[5]);
