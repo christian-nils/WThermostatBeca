@@ -99,25 +99,6 @@ public :
         resetAll();
       }
     }
-<<<<<<< HEAD
-    //Heartbeat
-    // if ((HEARTBEAT_INTERVAL > 0)
-    //     && ((lastHeartBeat == 0)
-    //         || (now - lastHeartBeat > HEARTBEAT_INTERVAL))) {
-    //   unsigned char heartBeatCommand[] =
-    //       { 0x55, 0xAA, 0x00, 0x00, 0x00, 0x00 };
-    //   commandCharsToSerial(6, heartBeatCommand);
-    //   //commandHexStrToSerial("55 aa 00 00 00 00");
-    //   lastHeartBeat = now;
-    // }
-    // //Query
-    // if ((lastHeartBeat > 0) &&
-    //     (now - lastQueryStatus > MINIMUM_INTERVAL) &&
-    //     (now - lastQueryStatus > QUERY_INTERVAL)) {
-    //   this->queryDeviceState();
-    //   lastQueryStatus = now;
-    // }
-=======
     //
     if (gpioReset != -1) {
       int iNewResetState = digitalRead(gpioReset);
@@ -250,7 +231,6 @@ public :
       this->queryDeviceState();
       lastQueryStatus = now;
     }*/
->>>>>>> 49dfb198efcdf1262f79d20454f124a4ff3eae74
   }
 
 protected :
